@@ -56,6 +56,7 @@ group :development do
 
   # Remove the following if your app does not use Rails
   gem 'capistrano-rails'
+  gem 'capistrano-rails-collection'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
