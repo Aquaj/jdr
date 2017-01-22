@@ -5,6 +5,7 @@ class CreateArmours < ActiveRecord::Migration[5.0]
       t.integer :enc
       t.string  :covers
       t.integer :armour_points
+      t.text    :details
 
       t.timestamps
     end

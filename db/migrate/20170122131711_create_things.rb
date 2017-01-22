@@ -6,6 +6,7 @@ class CreateThings < ActiveRecord::Migration[5.0]
       t.string  :name
       t.integer :enc_per_unit
       t.string  :localization
+      t.text    :details
 
       t.timestamps
     end

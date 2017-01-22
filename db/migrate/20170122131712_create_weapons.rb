@@ -7,7 +7,8 @@ class CreateWeapons < ActiveRecord::Migration[5.0]
       t.integer :damage
       t.integer :reach
       t.string  :reload
-      t.text    :attributes  
+      t.text    :attributes
+      t.text    :details
 
       t.timestamps
     end

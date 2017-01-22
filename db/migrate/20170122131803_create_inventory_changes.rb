@@ -3,6 +3,7 @@ class CreateInventoryChanges < ActiveRecord::Migration[5.0]
     create_table :inventory_changes do |t|
       t.references :item
       t.references :inventory, foreign_key: true
+      t.integer    :movement
 
       t.timestamps
     end
