@@ -30,6 +30,7 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bund
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
+set :rbenv_custom_path, '/usr/local/opt/rbenv'
 set :rbenv_ruby, '2.4.0'
 
 # Default value for keep_releases is 5
