@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :parentage do
+  factory :career do
     
   end
 end
