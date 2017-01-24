@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170122133040) do
+ActiveRecord::Schema.define(version: 20170124190642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,15 @@ ActiveRecord::Schema.define(version: 20170122133040) do
     t.datetime "updated_at",  null: false
     t.index ["skill_id"], name: "index_availabilities_on_skill_id", using: :btree
     t.index ["skillset_id"], name: "index_availabilities_on_skillset_id", using: :btree
+  end
+
+  create_table "awarenesses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "fact_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fact_id"], name: "index_awarenesses_on_fact_id", using: :btree
+    t.index ["user_id"], name: "index_awarenesses_on_user_id", using: :btree
   end
 
   create_table "base_stats", force: :cascade do |t|
@@ -124,6 +133,15 @@ ActiveRecord::Schema.define(version: 20170122133040) do
     t.datetime "updated_at",   null: false
     t.index ["inventory_id"], name: "index_inventory_changes_on_inventory_id", using: :btree
     t.index ["item_id"], name: "index_inventory_changes_on_item_id", using: :btree
+  end
+
+  create_table "parentages", force: :cascade do |t|
+    t.integer  "source_career_id"
+    t.integer  "leads_to_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["leads_to_id"], name: "index_parentages_on_leads_to_id", using: :btree
+    t.index ["source_career_id"], name: "index_parentages_on_source_career_id", using: :btree
   end
 
   create_table "players", force: :cascade do |t|
@@ -222,6 +240,7 @@ ActiveRecord::Schema.define(version: 20170122133040) do
   end
 
   add_foreign_key "availabilities", "skillsets"
+  add_foreign_key "awarenesses", "users"
   add_foreign_key "base_stats", "stats"
   add_foreign_key "career_changes", "characters"
   add_foreign_key "careers", "stat_bonus_sets"
