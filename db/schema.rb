@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20170124190642) do
     t.integer  "enc"
     t.string   "covers"
     t.integer  "armour_points"
+    t.text     "details"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -61,8 +62,10 @@ ActiveRecord::Schema.define(version: 20170124190642) do
   create_table "campaigns", force: :cascade do |t|
     t.string   "name"
     t.integer  "group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "game_master_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["game_master_id"], name: "index_campaigns_on_game_master_id", using: :btree
     t.index ["group_id"], name: "index_campaigns_on_group_id", using: :btree
   end
 
@@ -81,6 +84,7 @@ ActiveRecord::Schema.define(version: 20170124190642) do
   create_table "careers", force: :cascade do |t|
     t.integer  "stat_bonus_set_id"
     t.string   "name"
+    t.string   "nature"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.index ["stat_bonus_set_id"], name: "index_careers_on_stat_bonus_set_id", using: :btree
@@ -95,22 +99,15 @@ ActiveRecord::Schema.define(version: 20170124190642) do
     t.integer  "age"
     t.string   "gender"
     t.string   "sign"
-    t.string   "birthplace"
+    t.string   "eye_color"
+    t.string   "hair_color"
+    t.string   "birth_place"
     t.integer  "siblings"
-    t.string   "notable"
+    t.string   "notable_details"
     t.text     "notes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.index ["player_id"], name: "index_characters_on_player_id", using: :btree
-  end
-
-  create_table "dots", force: :cascade do |t|
-    t.integer  "career_id"
-    t.string   "name"
-    t.text     "details"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["career_id"], name: "index_dots_on_career_id", using: :btree
   end
 
   create_table "groups", force: :cascade do |t|
@@ -120,15 +117,16 @@ ActiveRecord::Schema.define(version: 20170124190642) do
   end
 
   create_table "inventories", force: :cascade do |t|
-    t.integer  "character_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["character_id"], name: "index_inventories_on_character_id", using: :btree
+    t.integer  "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_inventories_on_owner_id", using: :btree
   end
 
   create_table "inventory_changes", force: :cascade do |t|
     t.integer  "item_id"
     t.integer  "inventory_id"
+    t.integer  "movement"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["inventory_id"], name: "index_inventory_changes_on_inventory_id", using: :btree
@@ -178,9 +176,11 @@ ActiveRecord::Schema.define(version: 20170124190642) do
   create_table "stat_changes", force: :cascade do |t|
     t.integer  "base_stat_id"
     t.integer  "amount"
+    t.integer  "reason_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["base_stat_id"], name: "index_stat_changes_on_base_stat_id", using: :btree
+    t.index ["reason_id"], name: "index_stat_changes_on_reason_id", using: :btree
   end
 
   create_table "stats", force: :cascade do |t|
@@ -203,6 +203,7 @@ ActiveRecord::Schema.define(version: 20170124190642) do
     t.string   "name"
     t.integer  "enc_per_unit"
     t.string   "localization"
+    t.text     "details"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -235,6 +236,7 @@ ActiveRecord::Schema.define(version: 20170124190642) do
     t.integer  "reach"
     t.string   "reload"
     t.text     "attributes"
+    t.text     "details"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -242,11 +244,10 @@ ActiveRecord::Schema.define(version: 20170124190642) do
   add_foreign_key "availabilities", "skillsets"
   add_foreign_key "awarenesses", "users"
   add_foreign_key "base_stats", "stats"
+  add_foreign_key "campaigns", "groups"
   add_foreign_key "career_changes", "characters"
   add_foreign_key "careers", "stat_bonus_sets"
   add_foreign_key "characters", "players"
-  add_foreign_key "dots", "careers"
-  add_foreign_key "inventories", "characters"
   add_foreign_key "inventory_changes", "inventories"
   add_foreign_key "players", "groups"
   add_foreign_key "players", "users"

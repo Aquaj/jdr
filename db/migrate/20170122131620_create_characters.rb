@@ -10,9 +10,11 @@ class CreateCharacters < ActiveRecord::Migration[5.0]
       t.integer    :age
       t.string     :gender
       t.string     :sign
-      t.string     :birthplace
+      t.string     :eye_color
+      t.string     :hair_color
+      t.string     :birth_place
       t.integer    :siblings
-      t.string     :notable
+      t.string     :notable_details
 
       t.text       :notes
 
