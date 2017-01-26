@@ -1,5 +1,7 @@
 # README
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/86d58da1fd8b476485e899760f8e33c2)](https://www.codacy.com/app/jeremie-bonal/jdr?utm_source=github.com&utm_medium=referral&utm_content=Aquaj/jdr&utm_campaign=badger)
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
