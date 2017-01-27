@@ -17,10 +17,8 @@ ActiveRecord::Schema.define(version: 20170124190642) do
 
   create_table "abilities", force: :cascade do |t|
     t.string   "name"
-    t.integer  "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["parent_id"], name: "index_abilities_on_parent_id", using: :btree
   end
 
   create_table "armours", force: :cascade do |t|
@@ -43,12 +41,12 @@ ActiveRecord::Schema.define(version: 20170124190642) do
   end
 
   create_table "awarenesses", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "character_id"
     t.integer  "fact_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["character_id"], name: "index_awarenesses_on_character_id", using: :btree
     t.index ["fact_id"], name: "index_awarenesses_on_fact_id", using: :btree
-    t.index ["user_id"], name: "index_awarenesses_on_user_id", using: :btree
   end
 
   create_table "base_stats", force: :cascade do |t|
@@ -84,12 +82,10 @@ ActiveRecord::Schema.define(version: 20170124190642) do
   end
 
   create_table "careers", force: :cascade do |t|
-    t.integer  "stat_bonus_set_id"
     t.string   "name"
     t.string   "nature"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.index ["stat_bonus_set_id"], name: "index_careers_on_stat_bonus_set_id", using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "characters", force: :cascade do |t|
@@ -160,19 +156,14 @@ ActiveRecord::Schema.define(version: 20170124190642) do
     t.index ["career_id"], name: "index_skillsets_on_career_id", using: :btree
   end
 
-  create_table "stat_bonus_sets", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "stat_bonuses", force: :cascade do |t|
-    t.integer  "stat_bonus_set_id"
+    t.integer  "origin_id"
     t.integer  "amount"
     t.string   "reason"
     t.string   "context"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.index ["stat_bonus_set_id"], name: "index_stat_bonuses_on_stat_bonus_set_id", using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["origin_id"], name: "index_stat_bonuses_on_origin_id", using: :btree
   end
 
   create_table "stat_changes", force: :cascade do |t|
@@ -193,10 +184,8 @@ ActiveRecord::Schema.define(version: 20170124190642) do
 
   create_table "talents", force: :cascade do |t|
     t.string   "name"
-    t.integer  "stat_bonus_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["stat_bonus_id"], name: "index_talents_on_stat_bonus_id", using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "things", force: :cascade do |t|
@@ -243,17 +232,15 @@ ActiveRecord::Schema.define(version: 20170124190642) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "awarenesses", "users"
+  add_foreign_key "awarenesses", "characters"
   add_foreign_key "base_stats", "characters"
   add_foreign_key "base_stats", "stats"
   add_foreign_key "campaigns", "groups"
   add_foreign_key "career_changes", "characters"
-  add_foreign_key "careers", "stat_bonus_sets"
   add_foreign_key "characters", "players"
   add_foreign_key "inventory_changes", "inventories"
   add_foreign_key "players", "groups"
   add_foreign_key "players", "users"
   add_foreign_key "skillsets", "careers"
-  add_foreign_key "stat_bonuses", "stat_bonus_sets"
   add_foreign_key "stat_changes", "base_stats"
 end
