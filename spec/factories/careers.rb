@@ -4,6 +4,14 @@ FactoryGirl.define do
       name 'Farm Bull'
     end
 
+    factory :actual_tractor do
+      name 'Actual Tractor'
+
+      after do |tractor|
+        create(:parentage, source_career_id: create(:farm_bull), leads_to_id: tractor)
+      end
+    end
+
     factory :diva do
       name 'Diva'
     end
