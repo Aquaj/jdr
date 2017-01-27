@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Character Inventory', type: :model do
-  let(:zendark)     { Character.find_by_name('Zendark')  || create(:zendark) }
-  let(:candles)     { Thing.find_by_name('Candles')      || create(:candles) }
-  let(:burger_king) { Thing.find_by_name('Burger King')  || create(:burger_king) }
-  let(:big_mace)    { Weapon.find_by_name('Big Mace')    || create(:big_mace) }
-  let(:plaid_shirt) { Armour.find_by_name('Plaid Shirt') || create(:plaid_shirt) }
+  let :zendark     { Character.find_by_name('Zendark')  || create(:zendark) }
+  let :candles     { Thing.find_by_name('Candles')      || create(:candles) }
+  let :burger_king { Thing.find_by_name('Burger King')  || create(:burger_king) }
+  let :big_mace    { Weapon.find_by_name('Big Mace')    || create(:big_mace) }
+  let :plaid_shirt { Armour.find_by_name('Plaid Shirt') || create(:plaid_shirt) }
 
   it 'can be listed altogether' do
     expect(zendark.inventory).to eq [big_mace, plaid_shirt, candles]

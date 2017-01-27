@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Character Careers', type: :model do
-  let(:zendark) { Character.find_by_name('Zendark')     || create(:zendark) }
-  let(:bull)    { Career.find_by_name('Farm Bull')      || create(:farm_bull) }
-  let(:tractor) { Career.find_by_name('Actual Tractor') || create(:actual_tractor) }
-  let(:diva)    { Career.find_by_name('Diva')           || create(:diva) }
-  let(:icon)    { Career.find_by_name('Icon')           || create(:icon) }
-  let(:death)   { Career.find_by_name('Diva')           || create(:death_itself) }
-  let(:secret)  { Career.find_by_name('Secret')         || create(:secret_career) }
-  let(:player)  { Career.find_by_name('Proplayer')      || create(:proplayer) }
+  let :zendark { Character.find_by_name('Zendark')     || create(:zendark) }
+  let :bull    { Career.find_by_name('Farm Bull')      || create(:farm_bull) }
+  let :tractor { Career.find_by_name('Actual Tractor') || create(:actual_tractor) }
+  let :diva    { Career.find_by_name('Diva')           || create(:diva) }
+  let :icon    { Career.find_by_name('Icon')           || create(:icon) }
+  let :death   { Career.find_by_name('Diva')           || create(:death_itself) }
+  let :secret  { Career.find_by_name('Secret')         || create(:secret_career) }
+  let :player  { Career.find_by_name('Proplayer')      || create(:proplayer) }
 
   describe '#switches_carrer' do
     it 'switches to a new career' do
