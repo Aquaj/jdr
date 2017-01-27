@@ -1,9 +1,11 @@
 FactoryGirl.define do
-  factory :strength, class: :stat do
-    name :strength
-  end
+  factory :stat do
+    factory :strength do
+      name :strength
+    end
 
-  factory :agility, class: :stat do
-    name :agility
+    factory :agility do
+      name :agility
+    end
   end
 end
