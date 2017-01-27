@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Character, type: :model do
+RSpec.describe 'Character Stats', type: :model do
   subject(:character) { create(:character) }
   it { should respond_to(:stats) }
   it { should respond_to(:base_stats) }
@@ -12,7 +12,7 @@ RSpec.describe Character, type: :model do
     end
 
     it 'can get the stat\'s value' do
-      expect(create(:zendark).base_stat_for :strength)
+      expect(create(:zendark).stat_for :strength)
           .to_eq 85
     end
   end
@@ -23,8 +23,8 @@ RSpec.describe Character, type: :model do
           .to_eq 65
     end
 
-    it 'can get the stat\'s value' do
-      expect(create(:zendark).base_stat_of :strength)
+    it 'can get the base stat\'s value' do
+      expect(create(:zendark).stat_of :strength)
           .to_eq 85
     end
   end
