@@ -32,7 +32,7 @@ RSpec.describe 'Character Inventory', type: :model do
   it 'can be added new items' do
     zendark = create(:zendark)
     zendark.add_to_inventory(:bag, create(:burger_king))
-    expect(zendark.inventory_at(:bag))
+    expect(zendark.inventory(:bag))
       .to eq([Thing.find_by_name('Candles'),
               Thing.find_by_name('Burger King')])
   end
