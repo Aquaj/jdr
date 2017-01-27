@@ -7,7 +7,7 @@ FactoryGirl.define do
     name 'Snap of Death'
   end
 
-  factory :secret, class: :ability do
+  factory :secret_ability, class: :ability do
     name 'Secret'
   end
 end

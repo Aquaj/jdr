@@ -11,7 +11,7 @@ FactoryGirl.define do
     name 'Icon'
   end
 
-  factory :secret, class: :career do
+  factory :secret_career, class: :career do
     name   'Secret'
     nature :hidden
   end
