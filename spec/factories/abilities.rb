@@ -1,4 +1,12 @@
 FactoryGirl.define do
+  factory :dancing, class: :ability do
+    name 'Dancing'
+  end
+
+  factory :punching, class: :ability do
+    name 'Punching'
+  end
+
   factory :sassy_snap, class: :ability do
     name 'Sassy Snap'
   end
