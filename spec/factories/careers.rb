@@ -9,6 +9,10 @@ FactoryGirl.define do
 
   factory :icon, class: :career do
     name 'Icon'
+
+    after do |icon|
+      create(:parentage, source_career_id: create(:diva), leads_to_id: icon)
+    end
   end
 
   factory :secret_career, class: :career do
