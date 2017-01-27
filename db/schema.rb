@@ -34,12 +34,12 @@ ActiveRecord::Schema.define(version: 20170124190642) do
   end
 
   create_table "availabilities", force: :cascade do |t|
-    t.integer  "skillset_id"
+    t.integer  "owner_id"
     t.integer  "skill_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_availabilities_on_owner_id", using: :btree
     t.index ["skill_id"], name: "index_availabilities_on_skill_id", using: :btree
-    t.index ["skillset_id"], name: "index_availabilities_on_skillset_id", using: :btree
   end
 
   create_table "awarenesses", force: :cascade do |t|
@@ -52,10 +52,12 @@ ActiveRecord::Schema.define(version: 20170124190642) do
   end
 
   create_table "base_stats", force: :cascade do |t|
+    t.integer  "character_id"
     t.integer  "stat_id"
     t.integer  "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["character_id"], name: "index_base_stats_on_character_id", using: :btree
     t.index ["stat_id"], name: "index_base_stats_on_stat_id", using: :btree
   end
 
@@ -241,8 +243,8 @@ ActiveRecord::Schema.define(version: 20170124190642) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "availabilities", "skillsets"
   add_foreign_key "awarenesses", "users"
+  add_foreign_key "base_stats", "characters"
   add_foreign_key "base_stats", "stats"
   add_foreign_key "campaigns", "groups"
   add_foreign_key "career_changes", "characters"
