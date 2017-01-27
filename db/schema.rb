@@ -194,7 +194,6 @@ ActiveRecord::Schema.define(version: 20170124190642) do
     t.string   "unit"
     t.string   "name"
     t.integer  "enc_per_unit"
-    t.string   "localization"
     t.text     "details"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
