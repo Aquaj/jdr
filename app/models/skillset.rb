@@ -1,2 +1,0 @@
-class Skillset < ApplicationRecord
-end

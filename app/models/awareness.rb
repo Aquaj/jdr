@@ -1,4 +1,4 @@
 class Awareness < ApplicationRecord
-  belongs_to :user
-  belongs_to :fact
+  belongs_to :character
+  belongs_to :fact, polymorphic: true
 end

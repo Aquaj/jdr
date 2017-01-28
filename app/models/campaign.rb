@@ -1,4 +1,4 @@
 class Campaign < ApplicationRecord
   belongs_to :group
-  belongs_to :player
+  belongs_to :game_master
 end
