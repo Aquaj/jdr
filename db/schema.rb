@@ -32,21 +32,24 @@ ActiveRecord::Schema.define(version: 20170124190642) do
   end
 
   create_table "availabilities", force: :cascade do |t|
-    t.integer  "owner_id"
+    t.string   "to_type"
+    t.integer  "to_id"
+    t.string   "skill_type"
     t.integer  "skill_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["owner_id"], name: "index_availabilities_on_owner_id", using: :btree
-    t.index ["skill_id"], name: "index_availabilities_on_skill_id", using: :btree
+    t.index ["skill_type", "skill_id"], name: "index_availabilities_on_skill_type_and_skill_id", using: :btree
+    t.index ["to_type", "to_id"], name: "index_availabilities_on_to_type_and_to_id", using: :btree
   end
 
   create_table "awarenesses", force: :cascade do |t|
     t.integer  "character_id"
+    t.string   "fact_type"
     t.integer  "fact_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["character_id"], name: "index_awarenesses_on_character_id", using: :btree
-    t.index ["fact_id"], name: "index_awarenesses_on_fact_id", using: :btree
+    t.index ["fact_type", "fact_id"], name: "index_awarenesses_on_fact_type_and_fact_id", using: :btree
   end
 
   create_table "base_stats", force: :cascade do |t|
@@ -115,21 +118,23 @@ ActiveRecord::Schema.define(version: 20170124190642) do
   end
 
   create_table "inventories", force: :cascade do |t|
+    t.string   "owner_type"
     t.integer  "owner_id"
     t.string   "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["owner_id"], name: "index_inventories_on_owner_id", using: :btree
+    t.index ["owner_type", "owner_id"], name: "index_inventories_on_owner_type_and_owner_id", using: :btree
   end
 
   create_table "inventory_changes", force: :cascade do |t|
+    t.string   "item_type"
     t.integer  "item_id"
     t.integer  "inventory_id"
     t.integer  "movement"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["inventory_id"], name: "index_inventory_changes_on_inventory_id", using: :btree
-    t.index ["item_id"], name: "index_inventory_changes_on_item_id", using: :btree
+    t.index ["item_type", "item_id"], name: "index_inventory_changes_on_item_type_and_item_id", using: :btree
   end
 
   create_table "parentages", force: :cascade do |t|
@@ -150,31 +155,34 @@ ActiveRecord::Schema.define(version: 20170124190642) do
     t.index ["user_id"], name: "index_players_on_user_id", using: :btree
   end
 
-  create_table "skillsets", force: :cascade do |t|
+  create_table "skill_choices", force: :cascade do |t|
     t.integer  "career_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["career_id"], name: "index_skillsets_on_career_id", using: :btree
+    t.index ["career_id"], name: "index_skill_choices_on_career_id", using: :btree
   end
 
   create_table "stat_bonuses", force: :cascade do |t|
-    t.integer  "origin_id"
+    t.integer  "career_id"
+    t.integer  "stat_id"
     t.integer  "amount"
     t.string   "reason"
     t.string   "context"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["origin_id"], name: "index_stat_bonuses_on_origin_id", using: :btree
+    t.index ["career_id"], name: "index_stat_bonuses_on_career_id", using: :btree
+    t.index ["stat_id"], name: "index_stat_bonuses_on_stat_id", using: :btree
   end
 
   create_table "stat_changes", force: :cascade do |t|
     t.integer  "base_stat_id"
     t.integer  "amount"
-    t.integer  "reason_id"
+    t.string   "origin_type"
+    t.integer  "origin_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["base_stat_id"], name: "index_stat_changes_on_base_stat_id", using: :btree
-    t.index ["reason_id"], name: "index_stat_changes_on_reason_id", using: :btree
+    t.index ["origin_type", "origin_id"], name: "index_stat_changes_on_origin_type_and_origin_id", using: :btree
   end
 
   create_table "stats", force: :cascade do |t|
@@ -241,6 +249,8 @@ ActiveRecord::Schema.define(version: 20170124190642) do
   add_foreign_key "inventory_changes", "inventories"
   add_foreign_key "players", "groups"
   add_foreign_key "players", "users"
-  add_foreign_key "skillsets", "careers"
+  add_foreign_key "skill_choices", "careers"
+  add_foreign_key "stat_bonuses", "careers"
+  add_foreign_key "stat_bonuses", "stats"
   add_foreign_key "stat_changes", "base_stats"
 end

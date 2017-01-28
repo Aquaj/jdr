@@ -3,7 +3,7 @@ class CreateStatChanges < ActiveRecord::Migration[5.0]
     create_table :stat_changes do |t|
       t.references :base_stat, foreign_key: true
       t.integer    :amount
-      t.references :reason
+      t.references :origin, polymorphic: true, index: true
 
       t.timestamps
     end
