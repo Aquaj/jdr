@@ -1,2 +1,0 @@
-class StatBonusSet < ApplicationRecord
-end
