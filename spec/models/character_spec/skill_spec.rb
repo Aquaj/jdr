@@ -39,12 +39,12 @@ RSpec.describe 'Character Skills', type: :model do
     end
 
     it 'errors when new ability is not available' do
-      expect { create(:zendark).gets_ability death_snap }
+      expect { zendark.gets_ability death_snap }
         .to raise_error AbilityUnavailableException
     end
 
     it 'errors when new ability is not known' do
-      expect { create(:zendark).gets_ability secret }
+      expect { zendark.gets_ability secret }
         .to raise_error AbilityUnknownException
     end
   end
