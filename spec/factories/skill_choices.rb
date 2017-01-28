@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :skillset do
+  factory :skill_choices do
     
   end
 end
