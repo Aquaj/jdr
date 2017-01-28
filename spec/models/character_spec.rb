@@ -1,30 +1,38 @@
 require 'rails_helper'
 
 RSpec.describe Character, type: :model do
+  let :zendark  { find_or_create :zendark    }
+
+  let :gay      { find_or_create(:gay)       }
+  let :strong   { find_or_create(:strong_af) }
+
+  let :dancing  { find_or_create(:dancing)   }
+  let :punching { find_or_create(:punching)  }
+
+  let :bull     { find_or_create(:farm_bull) }
+  let :diva     { find_or_create(:diva)      }
+
   it 'doesn\'t need a player' do
-    expect { create(:character, player: nil) }.to_not raise_error
+    expect { create(:zendark, player: nil) }.to_not raise_error
   end
 
   it 'knows its encombrement' do
-    expect(create(:zendark).enc).to eq(10)
+    expect(zendark.enc).to eq 10
   end
 
   it 'knows how many HP it has' do
-    expect(create(:zendark).hp).to eq(12)
+    expect(zendark.hp).to eq 12
   end
 
   it 'knows its current careers' do
-    expect(create(:zendark).careers)
-      .to eq(Career.where(name: ['Diva', 'Farm Bull']))
+    expect(zendark.careers).to eq [diva, bull]
   end
 
   it 'knows its talents' do
-    expect(create(:zendark).talents)
-      .to eq(Talent.where(name: ['Strong AF', 'Gay']))
+    expect(zendark.talents).to eq [strong, gay]
   end
 
   it 'knows its abilities' do
-    expect(create(:zendark).abilities)
-      .to eq(Talent.where(name: ['Dancing', 'Punching']))
+    expect(zendark.abilities).to eq [dancing, punching]
   end
 end
