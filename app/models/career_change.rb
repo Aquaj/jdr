@@ -1,5 +1,5 @@
 class CareerChange < ApplicationRecord
-  belongs_to :from
-  belongs_to :to
   belongs_to :character
+  belongs_to :from, class_name: 'Career'
+  belongs_to :to,   class_name: 'Career'
 end
