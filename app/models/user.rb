@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :plays, class_name: 'Player'
   has_many :groups, through: :plays
   has_many :characters, through: :plays
+  has_many :campaigns, foreign_key: :game_master
 end
