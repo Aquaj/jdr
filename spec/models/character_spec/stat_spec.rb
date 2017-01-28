@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Character Stats', type: :model do
-  let :zendark { Character.find_by_name('Zendark') || create(:zendark) }
+  let :zendark { find_or_create(:zendark) }
 
   it 'can list stats' do
     expect(zendark).to respond_to :stats

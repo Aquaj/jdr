@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Character Skills', type: :model do
-  let :zendark { Character.find_by_name('Zendark') || create(:zendark) }
+  let :zendark { find_or_create(:zendark) }
 
   describe '#gets_talent' do
-    let :strong   { Talent.find_by_name('Strong AF') || create(:strong_af) }
-    let :gay      { Talent.find_by_name('Gay')       || create(:gay) }
-    let :fabulous { Talent.find_by_name('Fabulous')  || create(:fabulous) }
-    let :lethal   { Talent.find_by_name('Lethal')    || create(:lethal) }
-    let :secret   { Talent.find_by_name('Secret')    || create(:secret_talent) }
+    let :strong   { find_or_create(:strong_af)     }
+    let :gay      { find_or_create(:gay)           }
+    let :fabulous { find_or_create(:fabulous)      }
+    let :lethal   { find_or_create(:lethal)        }
+    let :secret   { find_or_create(:secret_talent) }
 
     it 'adds a new talent to the char' do
       zendark.gets_talent fabulous
@@ -27,11 +27,11 @@ RSpec.describe 'Character Skills', type: :model do
   end
 
   describe '#gets_ability' do
-    let :dancing    { Ability.find_by_name('Dancing')       || create(:dancing) }
-    let :punching   { Ability.find_by_name('Punching')      || create(:punching) }
-    let :sassy_snap { Ability.find_by_name('Sassy Snap')    || create(:sassy_snap) }
-    let :death_snap { Ability.find_by_name('Snap of Death') || create(:snap_of_death) }
-    let :secret     { Ability.find_by_name('Secret')        || create(:secret_ability) }
+    let :dancing    { find_or_create(:dancing)        }
+    let :punching   { find_or_create(:punching)       }
+    let :sassy_snap { find_or_create(:sassy_snap)     }
+    let :death_snap { find_or_create(:snap_of_death)  }
+    let :secret     { find_or_create(:secret_ability) }
 
     it 'adds a new ability to the char' do
       zendark.gets_ability sassy_snap
