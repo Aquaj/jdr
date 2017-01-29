@@ -3,9 +3,12 @@ class Stat
     extend ActiveSupport::Concern
 
     BASE_STATS = %i(combat_capacity aiming_capacity strength
-                    endurance agility intelligence mental_strength
-                    sociability attack health_points strength_bonus
-                    endurance_bonus movement magic folly_points destiny_points)
+                    endurance       agility         intelligence
+                    mental_strength sociability
+
+                    attack          health_points   strength_bonus
+                    endurance_bonus movement        magic
+                    folly_points    destiny_points)
 
     Translator = Hash.new { [] }
     BASE_STATS.each { |stat| Translator[stat] = stat }
