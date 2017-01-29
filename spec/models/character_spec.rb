@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Character, type: :model do
-  let :zendark  { find_or_create :zendark    }
+  let :zendark  { find_or_create :zendark    }
 
   let :gay      { find_or_create(:gay)       }
   let :strong   { find_or_create(:strong_af) }
@@ -25,14 +25,14 @@ RSpec.describe Character, type: :model do
   end
 
   it 'knows its current careers' do
-    expect(zendark.careers).to eq [diva, bull]
+    expect(zendark.careers).to contain_exactly diva, bull
   end
 
   it 'knows its talents' do
-    expect(zendark.talents).to eq [strong, gay]
+    expect(zendark.talents).to contain_exactly strong, gay
   end
 
   it 'knows its abilities' do
-    expect(zendark.abilities).to eq [dancing, punching]
+    expect(zendark.abilities).to contain_exactly dancing, punching
   end
 end

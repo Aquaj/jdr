@@ -13,7 +13,7 @@ RSpec.describe 'Character Careers', type: :model do
   describe '#switches_carrer' do
     it 'switches to a new career' do
       zendark.switch_career(from: diva, to: icon)
-      expect(zendark.careers).to eq [icon, bull]
+      expect(zendark.careers).to contain_exactly icon, bull
     end
 
     it 'errors when new career is not available' do
@@ -40,7 +40,7 @@ RSpec.describe 'Character Careers', type: :model do
   describe '#becomes' do
     it 'adds a new career to the char' do
       zendark.becomes(player)
-      expect(zendark.careers).to eq [diva, bull, player]
+      expect(zendark.careers).to contain_exactly diva, bull, player
     end
 
     it 'errors when new career is not available' do

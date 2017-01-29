@@ -12,7 +12,7 @@ RSpec.describe 'Character Skills', type: :model do
 
     it 'adds a new talent to the char' do
       zendark.gets_talent fabulous
-      expect(zendark.talents).to eq [strong, gay, fabulous]
+      expect(zendark.talents).to contain_exactly strong, gay, fabulous
     end
 
     it 'errors when new talent is not available' do
@@ -35,7 +35,7 @@ RSpec.describe 'Character Skills', type: :model do
 
     it 'adds a new ability to the char' do
       zendark.gets_ability sassy_snap
-      expect(zendark.abilities).to eq [dancing, punching, sassy_snap]
+      expect(zendark.abilities).to contain_exactly dancing, punching, sassy_snap
     end
 
     it 'errors when new ability is not available' do
