@@ -1,12 +1,12 @@
 class Stat < ApplicationRecord
+  include StatAliases
+
   has_many :base_stats
   has_many :stat_bonuses
 
-  def self.hp
-    find_by name: :health_points
-  end
+  define_alias :hp, :health_points
 
-  def self.strength
-    find_by name: :strength
+  def self.[] stat_alias
+    find_by name: stat_name_for(stat_alias)
   end
 end
