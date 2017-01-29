@@ -9,5 +9,10 @@ FactoryGirl.define do
       name :agility
       nature :primary
     end
+
+    factory :hp do
+      name :health_points
+      nature :secondary
+    end
   end
 end
