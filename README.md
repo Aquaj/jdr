@@ -7,3 +7,11 @@ Most code is based on the Warhammer Fantasy RolePlay (2nd Edition) rulebook.
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/86d58da1fd8b476485e899760f8e33c2)](https://www.codacy.com/app/jeremie-bonal/jdr?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Aquaj/jdr&amp;utm_campaign=Badge_Grade)
 
 Still under heavy work. README will be completed once the website is online.
+
+Some technical info:
+
+  - Rails 5
+  - RSpec
+  - FactoryGirl
+  - Postgresql
+  - Capistrano
