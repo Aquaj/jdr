@@ -20,7 +20,7 @@ FactoryGirl.define do
       after :create do |zendark|
         strength = give_base :strength, 65,  to: zendark
         agility  = give_base :agility,  35,  to: zendark
-        
+
         add_inventory :bag,       to: zendark
         add_inventory :horsebags, to: zendark
 
@@ -61,8 +61,8 @@ def give_skill(skill, to: nil)
                  skill: find_or_create(skill),
                  to: to)
 end
-alias :give_ability :give_skill
-alias :give_talent  :give_skill
+alias give_ability give_skill
+alias give_talent  give_skill
 
 def add_inventory(inventory, to: nil)
   find_or_create(inventory, owner: to)

@@ -6,7 +6,7 @@ FactoryGirl.define do
       after :create do |bull|
         link_talent  :strong_af, to: bull
         link_ability :punching, to: bull
-        
+
         stat_bonus 20, :strength, bull
       end
     end
@@ -15,7 +15,7 @@ FactoryGirl.define do
       name 'Actual Tractor'
 
       after :create do |tractor|
-        link_career :farm_bull, to: tractor    
+        link_career :farm_bull, to: tractor
         stat_bonus 30, :strength, bull
       end
     end
@@ -72,8 +72,8 @@ def link_skill(skill, to: nil)
                  skill: find_or_create(skill),
                  to: to)
 end
-alias :link_talent  :link_skill
-alias :link_ability :link_skill
+alias link_talent  link_skill
+alias link_ability link_skill
 
 def stat_bonus(bonus, stat, career)
   find_or_create(:stat_bonus,
