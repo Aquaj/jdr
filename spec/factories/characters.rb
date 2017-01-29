@@ -31,7 +31,6 @@ FactoryGirl.define do
         give_bonus  15, on: agility,  from: :diva
 
         give_talent   :gay,       to: zendark
-        give_talent   :fabulous,  to: zendark
         give_talent   :strong_af, to: zendark
 
         add_points  5, on: strength, because_of: :strong_af
