@@ -13,15 +13,18 @@ module FactoryGirl
       private
 
       def matcher_for(evaluation)
-        overrides = get_overrides(evaluation)
-        matcher   = overrides.each_with_object({}) do |override, attributes|
-          next attributes[override.first] = override.last unless override.last.respond_to? :id
-          attributes[:"#{override.first}_id"]   = override.last.id
-          attributes[:"#{override.first}_type"] = override.last.class.name
+        overrides  = get_overrides(evaluation)
+        attributes = evaluation.hash.merge(overrides)
+
+        matcher    = attributes.each_with_object({}) do |override, findables|
+          name, value = *override
+          next findables[name] = value unless value.respond_to? :id
+
+          findables[:"#{name}_id"]   = value.id
+          findables[:"#{name}_type"] = value.class.name
         end
-        matcher = evaluation.hash
-                            .merge(matcher)
-                            .select { |attr| build_class(evaluation).has_attribute?(attr) }
+
+        matcher.select { |attr| build_class(evaluation).has_attribute?(attr) }
       end
 
       def build_class(evaluation)
