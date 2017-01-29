@@ -5,6 +5,6 @@ class Character < ApplicationRecord
   has_many   :base_stats
   has_many   :awarenesses
   has_many   :availabilities, as: :owner
-  has_many   :inventories
+  has_many   :inventories, as: :owner
   has_many   :items, through: :inventories
 end
