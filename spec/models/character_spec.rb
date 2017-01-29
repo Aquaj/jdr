@@ -20,6 +20,10 @@ RSpec.describe Character, type: :model do
     expect(zendark.enc).to eq 10
   end
 
+  it 'knows its max encombrement' do
+    expect(zendark.max_enc).to eq 850
+  end
+
   it 'knows how many HP it has' do
     expect(zendark.hp).to eq 12
   end
