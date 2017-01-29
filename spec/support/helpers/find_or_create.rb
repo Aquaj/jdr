@@ -6,8 +6,8 @@ module FactoryGirl
       end
 
       def result(evaluation, only_overrides: false)
-        match = only_overrides ? get_overrides(evaluation) : matcher_for(evaluation)      
-        build_class(evaluation).where(matcher_for(evaluation)).first
+        match = only_overrides ? get_overrides(evaluation) : matcher_for(evaluation)
+        build_class(evaluation).where(match).first
       end
 
       private
@@ -53,7 +53,7 @@ module FactoryGirl
       end
     end
   end
-  
+
   register_strategy(:find, Strategy::Find)
   register_strategy(:find_or_create, Strategy::FindOrCreate)
 end
