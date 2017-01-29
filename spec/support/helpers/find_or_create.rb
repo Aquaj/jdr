@@ -5,8 +5,10 @@ module FactoryGirl
         runner.run
       end
 
-      def result(evaluation)
-        build_class(evaluation).where(get_overrides(evaluation)).first
+      def result(evaluation, only_overrides: false)
+        matcher = evaluation.hash.select { |attr| build_class(evaluation).has_attribute?(attr) }
+        matcher = get_overrides(evaluation) if only_overrides
+        build_class(evaluation).where(matcher).first
       end
 
       private
