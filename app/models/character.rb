@@ -16,6 +16,10 @@ class Character < ApplicationRecord
   has_many   :inventories, as: :owner
   has_many   :items, through: :inventories
 
+  def max_enc
+    10 * stat_of(Stat.strength)
+  end
+
   def base_stat_of stat
     base_stats.find_by(stat: stat)
              &.value
@@ -30,6 +34,6 @@ class Character < ApplicationRecord
   alias_method :stat_for, :stat_of
 
   def hp
-    stat_of Stat.hp_stat
+    stat_of Stat.hp
   end
 end
