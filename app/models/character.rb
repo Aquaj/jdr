@@ -1,4 +1,6 @@
 class Character < ApplicationRecord
+  has_stats
+
   belongs_to :player, optional: true
   has_one    :user, through: :player
 
@@ -23,17 +25,4 @@ class Character < ApplicationRecord
   def max_enc
     10 * stat_of(Stat[:Strength])
   end
-
-  def base_stat_of stat
-    base_stats.find_by(stat: stat)
-             &.value
-  end
-  alias_method :base_stat_for, :base_stat_of
-
-  def stat_of stat
-    base    = base_stats.find_by stat: stat
-    changes = base.stat_changes.pluck :amount
-    base.value + changes.sum
-  end
-  alias_method :stat_for, :stat_of
 end
