@@ -6,12 +6,23 @@ module FactoryGirl
       end
 
       def result(evaluation, only_overrides: false)
-        matcher = evaluation.hash.select { |attr| build_class(evaluation).has_attribute?(attr) }
-        matcher = get_overrides(evaluation) if only_overrides
-        build_class(evaluation).where(matcher).first
+        match = only_overrides ? get_overrides(evaluation) : matcher_for(evaluation)      
+        build_class(evaluation).where(matcher_for(evaluation)).first
       end
 
       private
+
+      def matcher_for(evaluation)
+        overrides = get_overrides(evaluation)
+        matcher   = overrides.each_with_object({}) do |override, attributes|
+          next attributes[override.first] = override.last unless override.last.respond_to? :id
+          attributes[:"#{override.first}_id"]   = override.last.id
+          attributes[:"#{override.first}_type"] = override.last.class.name
+        end
+        matcher = evaluation.hash
+                            .merge(matcher)
+                            .select { |attr| build_class(evaluation).has_attribute?(attr) }
+      end
 
       def build_class(evaluation)
         evaluation.instance_variable_get(:@attribute_assigner).instance_variable_get(:@build_class)
