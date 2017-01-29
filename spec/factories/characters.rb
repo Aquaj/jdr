@@ -20,6 +20,7 @@ FactoryGirl.define do
       after :create do |zendark|
         strength = give_base :strength, 65,  to: zendark
         agility  = give_base :agility,  35,  to: zendark
+        hp       = give_base :hp,       10,  to: zendark
 
         add_inventory :bag,       to: zendark
         add_inventory :horsebags, to: zendark
@@ -34,6 +35,7 @@ FactoryGirl.define do
         give_talent   :strong_af, to: zendark
 
         add_points  5, on: strength, because_of: :strong_af
+        add_points  2, on: hp,       because_of: :strong_af
 
         give_ability  :dancing,   to: zendark
         give_ability  :punching,  to: zendark
