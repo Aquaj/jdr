@@ -233,11 +233,11 @@ ActiveRecord::Schema.define(version: 20170124190642) do
     t.string   "group"
     t.integer  "damage"
     t.integer  "reach"
-    t.string   "reload"
-    t.text     "attributes"
+    t.string   "reload_info"
+    t.text     "qualities"
     t.text     "details"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_foreign_key "awarenesses", "characters"

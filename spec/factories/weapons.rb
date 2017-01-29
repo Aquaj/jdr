@@ -6,9 +6,9 @@ FactoryGirl.define do
       group       'Bludgeons'
       damage      '1d+5'
       reach       '1m'
-      reload      ''
+      reload_info ''
       details     'Big AF'
-      attributes  'Big'
+      qualities   'Big'
   end
   end
 end
