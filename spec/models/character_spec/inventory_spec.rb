@@ -16,7 +16,7 @@ RSpec.describe 'Character Inventory', type: :model do
   end
 
   it 'can be gotten as a specific location\'s inventory' do
-    expect(zendark.inventory(:bag)).to contain_exactly candles
+    expect(zendark.inventory :bag).to contain_exactly candles
   end
 
   it 'can have some weapons' do
@@ -32,7 +32,7 @@ RSpec.describe 'Character Inventory', type: :model do
   end
 
   it 'can be added new items' do
-    zendark.add_to_inventory :bag, burger_king
-    expect(zendark.inventory(:bag)).to contain_exactly candles, burger_king
+    zendark.add_to_inventory :bag, burger_king => 15
+    expect(zendark.inventory :bag).to contain_exactly candles, burger_king
   end
 end
