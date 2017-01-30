@@ -20,5 +20,14 @@ module Has
     end
     alias_method :stat_for, :stat_of
 
+    def method_missing method_name, *args, &block
+      stat = Stat[method_name]
+      return stat_of stat if stat
+      super
+    end
+
+    def respond_to_missing? method_name, include_private = false
+      Stat[method_name]
+    end
   end
 end

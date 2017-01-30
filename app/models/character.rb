@@ -12,11 +12,7 @@ class Character < ApplicationRecord
   has_many   :abilities, through: :availabilities,
                          source: :skill, source_type: 'Ability'
 
-  def hp
-    stat_of Stat[:HP]
-  end
-
   def max_enc
-    10 * stat_of(Stat[:Strength])
+    10 * strength
   end
 end

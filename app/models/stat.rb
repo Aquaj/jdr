@@ -7,6 +7,7 @@ class Stat < ApplicationRecord
   define_alias :hp, :health_points
 
   def self.[] stat_alias
-    find_by name: stat_name_for(stat_alias)
+    stat   = find_by name: stat_alias
+    stat ||= find_by name: stat_name_for(stat_alias)
   end
 end

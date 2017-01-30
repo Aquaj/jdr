@@ -21,7 +21,11 @@ class Stat
 
       def stat_name_for stat_alias
         st_alias = normalize_alias stat_alias
-        return st_alias if StatAliases::Translator.values.include? st_alias
+
+        nomen = StatAliases::Translator.values
+
+        alias_in_nomenclature = nomen.include? st_alias
+        return st_alias if alias_in_nomenclature
 
         StatAliases::Translator[st_alias]
       end
