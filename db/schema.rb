@@ -130,7 +130,7 @@ ActiveRecord::Schema.define(version: 20170124190642) do
     t.string   "item_type"
     t.integer  "item_id"
     t.integer  "inventory_id"
-    t.integer  "movement"
+    t.integer  "amount"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["inventory_id"], name: "index_inventory_changes_on_inventory_id", using: :btree
