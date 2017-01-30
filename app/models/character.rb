@@ -8,10 +8,11 @@ class Character < ApplicationRecord
   has_many   :awarenesses
 
   has_many   :availabilities, as: :to
-  has_many   :talents,   through: :availabilities,
-                         source: :skill, source_type: 'Talent'
-  has_many   :abilities, through: :availabilities,
-                         source: :skill, source_type: 'Ability'
+
+  with_options through: :availabilities, source: :skill do
+    has_many   :talents,   source_type: 'Talent'
+    has_many   :abilities, source_type: 'Ability'
+  end
 
   def max_enc
     10 * strength
