@@ -9,5 +9,5 @@ class Inventory < ApplicationRecord
       inventory_changes.create! item: item, amount: amount
     end
   end
-  alias_method :add, :add_items
+  alias add add_items
 end

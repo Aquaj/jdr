@@ -8,6 +8,7 @@ class Stat < ApplicationRecord
 
   def self.[] stat_alias
     stat   = find_by name: stat_alias
-    stat ||= find_by name: stat_name_for(stat_alias)
+    stat ||= find_by name: stat_name_for(stat_alias)
+    stat
   end
 end

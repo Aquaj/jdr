@@ -11,14 +11,14 @@ module Has
       base_stats.find_by(stat: stat)
                &.value
     end
-    alias_method :base_stat_for, :base_stat_of
+    alias base_stat_for base_stat_of
 
     def stat_of stat
       base    = base_stats.find_by stat: stat
       changes = base.stat_changes.pluck :amount
       base.value + changes.sum
     end
-    alias_method :stat_for, :stat_of
+    alias stat_for stat_of
 
     def method_missing method_name, *args, &block
       stat = Stat[method_name]
@@ -26,7 +26,7 @@ module Has
       super
     end
 
-    def respond_to_missing? method_name, include_private = false
+    def respond_to_missing? method_name, _include_private = false
       Stat[method_name]
     end
   end
