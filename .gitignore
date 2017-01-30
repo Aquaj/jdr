@@ -20,4 +20,4 @@
 /config/application.yml
 
 # Ignore coverage reports
-converage/
+/converage/*
