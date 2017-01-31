@@ -39,4 +39,9 @@ RSpec.describe Character, type: :model do
   it 'knows its abilities' do
     expect(zendark.abilities).to contain_exactly dancing, punching
   end
+
+  it 'can add new items to its inventory' do
+    zendark.add_to_inventory :bag, burger_king => 15
+    expect(zendark.inventory :bag).to contain_exactly candles, burger_king
+  end
 end
