@@ -17,6 +17,11 @@ RSpec.describe Has::Stats do
     expect(zendark.base_strength).to eq 65
   end
 
+  it 'shouldn\'t try to get values of non-existent stats or base stats' do
+    expect { zendark.schlagavuk      }.to raise_error NoMethodError
+    expect { zendark.base_schlagavuk }.to raise_error NoMethodError
+  end
+
   it 'sets up a relation to Stats' do
     expect(zendark).to respond_to :stats
   end
