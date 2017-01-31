@@ -18,6 +18,9 @@ RSpec.describe Has::Stats do
   end
 
   it 'shouldn\'t try to get values of non-existent stats or base stats' do
+    expect(zendark).to_not respond_to :schlagavuk
+    expect(zendark).to_not respond_to :base_schlagavuk
+
     expect { zendark.schlagavuk      }.to raise_error NoMethodError
     expect { zendark.base_schlagavuk }.to raise_error NoMethodError
   end
