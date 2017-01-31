@@ -1,17 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe Has::Inventories, type: :model do
-  let :zendark     { create(:zendark)     }
-  let :candles     { find_or_create(:candles)     }
-  let :burger_king { find_or_create(:burger_king) }
-  let :big_mace    { find_or_create(:big_mace)    }
-  let :plaid_shirt { find_or_create(:plaid_shirt) }
+  let :zendark     { create         :zendark     }
+  let :candles     { find_or_create :candles     }
+  let :burger_king { find_or_create :burger_king }
+  let :big_mace    { find_or_create :big_mace    }
+  let :plaid_shirt { find_or_create :plaid_shirt }
 
   before do
     Character.include Has::Inventories
   end
 
-  it 'allows to list the items altogether' do
+  it 'should include Has::Items when included' do
+    expect(Character.included_modules).to contain Has::Items
+  end
+
+  it 'allows to list the items altogether regardless of inventory' do
     expect(zendark.inventory).to contain_exactly big_mace, plaid_shirt, candles
   end
 
@@ -25,17 +29,5 @@ RSpec.describe Has::Inventories, type: :model do
 
   it 'allows to get a specific inventory\'s items by location' do
     expect(zendark.inventory :bag).to contain_exactly candles
-  end
-
-  it 'provides a weapon list' do
-    expect(zendark.weapons).to contain_exactly big_mace
-  end
-
-  it 'provides an armour list' do
-    expect(zendark.armours).to contain_exactly plaid_shirt
-  end
-
-  it 'provides a list of the other things' do
-    expect(zendark.things).to contain_exactly candles
   end
 end
