@@ -1,7 +1,7 @@
 class Inventory < ApplicationRecord
   has_items
 
-  belongs_to :owner, polymorphic: true
+  belongs_to :owner, polymorphic: true, optional: true
   has_many   :inventory_changes
 
   def add_items stuff

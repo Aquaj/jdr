@@ -8,7 +8,7 @@ RSpec.describe Has::Items, type: :model do
   let :plaid_shirt { find_or_create :plaid_shirt }
 
   before do
-    Inventory.include Has::Inventories
+    Inventory.include Has::Items
   end
 
   it 'allows to list the items altogether' do
@@ -25,5 +25,17 @@ RSpec.describe Has::Items, type: :model do
 
   it 'provides a list of the other things' do
     expect(bag.things).to contain_exactly candles
+  end
+
+  it 'provides a way to get the enc due to a specific item' do
+    expect(bag.enc_for candles).to eq 5
+  end
+
+  it 'provides a way to know the total enc' do
+    expect(horsebags.enc).to eq 5
+  end
+
+  it 'provides the quantity of an item' do
+    expect(horsebags.quantity_of plaid_shirt).to eq 1
   end
 end

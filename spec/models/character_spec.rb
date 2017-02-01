@@ -16,10 +16,6 @@ RSpec.describe Character, type: :model do
     expect { create(:zendark, player: nil) }.to_not raise_error
   end
 
-  it 'knows its encombrement' do
-    expect(zendark.enc).to eq 10
-  end
-
   it 'knows its max encombrement' do
     expect(zendark.max_enc).to eq 850
   end
