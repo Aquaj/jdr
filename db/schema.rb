@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20170124190642) do
 
   create_table "armours", force: :cascade do |t|
     t.string   "name"
-    t.integer  "enc"
+    t.integer  "enc_per_unit"
     t.string   "covers"
     t.integer  "armour_points"
     t.text     "details"
@@ -230,15 +230,15 @@ ActiveRecord::Schema.define(version: 20170124190642) do
 
   create_table "weapons", force: :cascade do |t|
     t.string   "name"
-    t.integer  "enc"
+    t.integer  "enc_per_unit"
     t.string   "group"
     t.integer  "damage"
     t.integer  "reach"
     t.string   "reload_info"
     t.text     "qualities"
     t.text     "details"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_foreign_key "awarenesses", "characters"
