@@ -12,7 +12,7 @@ RSpec.describe Has::Inventories, type: :model do
   end
 
   it 'should include Has::Items when included' do
-    expect(Character.included_modules).to contain Has::Items
+    expect(Character.included_modules).to include Has::Items
   end
 
   it 'allows to list the items altogether regardless of inventory' do
@@ -29,5 +29,10 @@ RSpec.describe Has::Inventories, type: :model do
 
   it 'allows to get a specific inventory\'s items by location' do
     expect(zendark.inventory :bag).to contain_exactly candles
+  end
+
+  it 'allows us to add items to an inventory' do
+    zendark.add_to_inventory :bag, burger_king => 15
+    expect(zendark.inventory :bag).to include burger_king
   end
 end
