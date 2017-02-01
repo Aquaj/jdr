@@ -13,5 +13,17 @@ module Has
     def items
       armours + things + weapons
     end
+
+    def enc
+      items.sum { |item| enc_for item }
+    end
+
+    def enc_for item
+      item.enc_per_unit * quantity_of(item)
+    end
+
+    def quantity_of item
+      inventory_changes.where(item: item).sum(:amount)
+    end
   end
 end
