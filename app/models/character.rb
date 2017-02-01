@@ -1,6 +1,7 @@
 class Character < ApplicationRecord
   has_stats
   has_inventories
+  has_careers
 
   belongs_to :player, optional: true
   has_one    :user, through: :player

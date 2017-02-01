@@ -16,4 +16,5 @@ class ApplicationRecord < ActiveRecord::Base
   can_have :stats
   can_have :inventories
   can_have :items
+  can_have :careers
 end
