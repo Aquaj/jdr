@@ -1,13 +1,7 @@
-module Has
-  module Inventories
-    extend ActiveSupport::Concern
-
-    included do
-      has_items
-
-      has_many :inventories, as: :owner
-      has_many :inventory_changes, through: :inventories
-    end
+module Managers
+  class InventoryManager < Manager
+    needs_from_owner :items
+    needs_from_owner :inventories
 
     def inventory place = nil
       return items unless place

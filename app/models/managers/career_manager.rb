@@ -1,14 +1,10 @@
-module Has
-  module Careers
-    extend ActiveSupport::Concern
-
-    included do
-      has_many :career_changes
-      has_many :careers_acquired, through: :career_changes, source: :to
-      has_many :previous_careers, through: :career_changes, source: :from
-      has_many :knowledges_of_classes, class_name: 'Awareness'
-      has_many :secret_classes, through: :knowledges_of_classes, source: :fact, source_type: 'Career'
-    end
+module Managers
+  class CareerManager < Manager
+    needs_from_owner :career_changes
+    needs_from_owner :careers_acquired
+    needs_from_owner :previous_careers
+    needs_from_owner :knowledges_of_classes
+    needs_from_owner :secret_classes
 
     def careers
       careers_acquired - previous_careers
@@ -67,8 +63,3 @@ module Has
     end
   end
 end
-
-class CareerUnavailableException < Exception; end;
-class CareerUnknownException < Exception; end;
-class NotOwnedCareerException < Exception; end;
-class NoCareerPathException < Exception; end;
