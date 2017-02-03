@@ -41,6 +41,8 @@ module Managers
       Parentage.find_by source_career: source, leads_to: target
     end
 
+    # FIXME: There _must_ be a pattern to refactor these...
+
     def ensure_target_validity! career
       ensure_availability! career
       ensure_knowledge_of! career
