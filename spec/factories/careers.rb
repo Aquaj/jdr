@@ -1,68 +1,76 @@
 FactoryGirl.define do
   factory :career do
-    factory :farm_bull do
-      name 'Farm Bull'
+    factory :basic do
+      nature :basic
 
-      after :create do |bull|
-        link_talent  :strong_af, to: bull
-        link_ability :punching, to: bull
+      factory :farm_bull do
+        name 'Farm Bull'
 
-        stat_bonus 20, :strength, bull
+        after :create do |bull|
+          link_talent  :strong_af, to: bull
+          link_ability :punching, to: bull
+
+          stat_bonus 20, :strength, bull
+        end
+      end
+
+      factory :diva do
+        name 'Diva'
+
+        after :create do |diva|
+          link_talent  :gay, to: diva
+          link_ability :dancing, to: diva
+          link_ability :sassy_snap, to: diva
+
+          stat_bonus 15, :agility, diva
+        end
+      end
+
+      factory :proplayer do
+        name 'Proplayer'
       end
     end
 
-    factory :actual_tractor do
-      name 'Actual Tractor'
+    factory :advanced do
+      nature :advanced
 
-      after :create do |tractor|
-        link_career :farm_bull, to: tractor
-        stat_bonus 30, :strength, bull
+      factory :icon do
+        name 'Icon'
+
+        after :create do |icon|
+          link_career :diva, to: icon
+        end
       end
-    end
 
-    factory :diva do
-      name 'Diva'
+      factory :actual_tractor do
+        name 'Actual Tractor'
 
-      after :create do |diva|
-        link_talent  :gay, to: diva
-        link_ability :dancing, to: diva
-        link_ability :sassy_snap, to: diva
-
-        stat_bonus 15, :agility, diva
+        after :create do |tractor|
+          link_career :farm_bull, to: tractor
+          stat_bonus 30, :strength, tractor
+        end
       end
-    end
 
-    factory :icon do
-      name 'Icon'
+      factory :death_itself do
+        name 'Death Itself'
 
-      after :create do |icon|
-        link_career :diva, to: icon
+        after :create do |death|
+          link_talent  :lethal, to: death
+          link_ability :snap_of_death, to: death
+        end
       end
-    end
 
-    factory :secret_career do
-      name   'Secret'
-      nature :hidden
+      factory :secret_career do
+        name   'Secret'
+        secret true
 
-      after :create do |secret|
-        link_career :diva, to: secret
+        after :create do |secret|
+          link_career :diva, to: secret
 
-        link_talent  :secret_talent, to: secret
-        link_ability :secret_ability, to: secret
+          link_talent  :secret_talent, to: secret
+          link_ability :secret_ability, to: secret
+        end
       end
-    end
-
-    factory :death_itself do
-      name 'Death Itself'
-
-      after :create do |death|
-        link_talent  :lethal, to: death
-        link_ability :snap_of_death, to: death
-      end
-    end
-
-    factory :proplayer do
-      name 'Proplayer'
     end
   end
 end
