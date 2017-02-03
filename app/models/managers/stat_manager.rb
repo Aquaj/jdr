@@ -1,11 +1,6 @@
 module Managers
-  class StatManager
-    delegate :stats,      to: :@owner
-    delegate :base_stats, to: :@owner
-
-    def initialize(boss)
-      @owner = boss
-    end
+  class StatManager < Manager
+    needs_from_owner :base_stats
 
     def base_stat_of stat
       base_stats.find_by(stat: stat)
