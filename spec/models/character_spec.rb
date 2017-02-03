@@ -24,10 +24,6 @@ RSpec.describe Character, type: :model do
     expect(zendark.hp).to eq 12
   end
 
-  it 'knows its current careers' do
-    expect(zendark.careers).to contain_exactly diva, bull
-  end
-
   it 'knows its talents' do
     expect(zendark.talents).to contain_exactly strong, gay
   end
