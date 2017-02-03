@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20170124190642) do
   create_table "careers", force: :cascade do |t|
     t.string   "name"
     t.string   "nature"
+    t.boolean  "secret"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
