@@ -1,10 +1,10 @@
-module Has
-  module Stats
-    extend ActiveSupport::Concern
+module Managers
+  class StatManager
+    delegate :stats,      to: :@owner
+    delegate :base_stats, to: :@owner
 
-    included do
-      has_many   :base_stats
-      has_many   :stats, through: :base_stats
+    def initialize(boss)
+      @owner = boss
     end
 
     def base_stat_of stat
