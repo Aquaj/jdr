@@ -3,7 +3,6 @@ module WithManagers
 
   included do
     singleton_class.instance_eval do
-      byebug
       Managers.each do |manager|
         property = manager.managed_attribute.to_s
         resource = property.singularize
