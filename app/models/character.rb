@@ -1,8 +1,8 @@
 class Character < ApplicationRecord
   has_stats
-  has_inventories
   has_items
   has_careers
+  has_inventories
 
   has_many :career_changes
   has_many :careers_acquired, through: :career_changes, source: :to
