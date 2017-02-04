@@ -2,8 +2,9 @@ module Managers
   class Manager
     attr_reader :owner
 
-    def initialize boss
-      @owner = boss
+    def initialize owner
+      @owner = owner
+      self.class.enforce_contract_with! @owner
     end
 
     def self.managed_attribute
@@ -11,10 +12,18 @@ module Managers
     end
 
     def self.needs_from_owner *attributes
-      attributes.each do |attribute|
+      @needs ||= []
+      @needs += attributes.each do |attribute|
         delegate attribute, to: :owner
         private attribute # Avoids endless loop of delegation.
       end
+    end
+
+    def self.enforce_contract_with! object
+      breaking = @needs.reject { |need| object.respond_to? need }
+      return true if breaking.empty?
+      raise ContractBrokenException,
+            "#{self.name} expected #{object} to define #{breaking}."
     end
 
     def method_defined? method_name
@@ -22,3 +31,5 @@ module Managers
     end
   end
 end
+
+class ContractBrokenException < Exception; end
