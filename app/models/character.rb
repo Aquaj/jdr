@@ -7,8 +7,9 @@ class Character < ApplicationRecord
   has_many :career_changes
   has_many :careers_acquired, through: :career_changes, source: :to
   has_many :previous_careers, through: :career_changes, source: :from
-  has_many :knowledges_of_classes, class_name: 'Awareness'
-  has_many :secret_classes, through: :knowledges_of_classes, source: :fact, source_type: 'Career'
+  has_many :knowledges, class_name: 'Awareness'
+  has_many :secret_classes, through: :knowledges, source: :fact, source_type: 'Career'
+  has_many :secret_abilities, through: :knowledges, source: :fact, source_type: 'Ability'
 
   belongs_to :player, optional: true
   has_one    :user, through: :player
@@ -25,9 +26,9 @@ class Character < ApplicationRecord
     has_many   :weapons, source_type: 'Weapon'
   end
 
-  has_many   :awarenesses
+  has_many :awarenesses
 
-  has_many   :availabilities, as: :to
+  has_many :availabilities, as: :to
 
   with_options through: :availabilities, source: :skill do
     has_many   :talents,   source_type: 'Talent'
