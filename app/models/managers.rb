@@ -6,12 +6,12 @@ end
 module Managers
   extend Enumerable
 
-  def self.managers
+  def self.list
     manager_names = constants - [:Manager]
     manager_names.map { |manager| const_get manager }
   end
 
   def self.each &block
-    managers.each(&block)
+    list.each(&block)
   end
 end
