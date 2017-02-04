@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'CareerManager', type: :model do
+RSpec.describe Managers::CareerManager, type: :model do
   let :zendark { create         :zendark             }
   let :bull    { find_or_create :farm_bull           }
   let :tractor { find_or_create :actual_tractor      }
