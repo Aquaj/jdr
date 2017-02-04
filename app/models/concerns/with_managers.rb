@@ -22,7 +22,7 @@ module WithManagers
   def method_missing method_name, *args, &block
     manager = manager_for_method method_name
     return_value = manager&.send method_name, *args, &block
-    return_value || super
+    return_value || super
   end
 
   def respond_to_missing? method_name, _include_private = false
