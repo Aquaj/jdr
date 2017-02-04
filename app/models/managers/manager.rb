@@ -4,6 +4,9 @@ module Managers
 
     def initialize owner
       @owner = owner
+    end
+
+    def enforce_contract!
       self.class.enforce_contract_with! @owner
     end
 
