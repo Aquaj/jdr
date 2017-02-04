@@ -31,11 +31,6 @@ module Managers
       careers_acquired.any? { |career| career.skills.include? skill }
     end
 
-    def skill_unknown skill
-      return TalentUnknownException if skill.is_a? Talent
-      AbilityUnknownException
-    end
-
     def skill_unavailable skill
       return TalentUnavailableException if skill.is_a? Talent
       AbilityUnavailableException
