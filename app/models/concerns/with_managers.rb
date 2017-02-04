@@ -31,7 +31,7 @@ module WithManagers
 
   def manager_for_method method
     # First-pass w/ method_defined? to avoid the #method_missing calls
-    manager = @managers.find { |mngr| mngr.method_defined? method }
-    manager || @managers.find { |mngr| mngr.respond_to? method }
+    manager = @managers&.find { |mngr| mngr.method_defined? method }
+    manager || @managers&.find { |mngr| mngr.respond_to? method }
   end
 end
