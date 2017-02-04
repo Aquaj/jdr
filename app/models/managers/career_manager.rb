@@ -14,7 +14,7 @@ module Managers
     def switch_career from: nil, to: nil
       ensure_target_validity!    to
       if from
-        ensure_career_owned!       from
+        ensure_owned!       from
         ensure_connection_between! from, to
       end
 
@@ -25,21 +25,23 @@ module Managers
       switch_career to: career
     end
 
-    def career_available? career
+    protected
+
+    def available? career
       career.basic? ||
         careers.any? { |source| source.exits.exists? career.id }
     end
 
-    def career_known? career
+    def known? career
       return secret_classes.exists? career.id if career.secret?
       true
     end
 
-    def career_owned? career
+    def owned? career
       careers_acquired.exists? career.id
     end
 
-    def careers_connected? source, target
+    def connected? source, target
       Parentage.find_by source_career: source, leads_to: target
     end
 
@@ -51,19 +53,19 @@ module Managers
     end
 
     def ensure_availability! career
-      raise CareerUnavailableException unless career_available? career
+      raise CareerUnavailableException unless available? career
     end
 
     def ensure_knowledge_of! career
-      raise CareerUnknownException unless career_known? career
+      raise CareerUnknownException unless known? career
     end
 
-    def ensure_career_owned! career
-      raise NotOwnedCareerException unless career_owned? career
+    def ensure_owned! career
+      raise NotOwnedCareerException unless owned? career
     end
 
     def ensure_connection_between! source, target
-      raise NoCareerPathException unless careers_connected? source, target
+      raise NoCareerPathException unless connected? source, target
     end
   end
 end
