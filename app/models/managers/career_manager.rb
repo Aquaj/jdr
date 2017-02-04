@@ -13,15 +13,16 @@ module Managers
 
     def switch_career from: nil, to: nil
       ensure_target_validity!    to
-      ensure_career_owned!       from
-      ensure_connection_between! from, to
+      if from
+        ensure_career_owned!       from
+        ensure_connection_between! from, to
+      end
 
       career_changes.create! from: from, to: to
     end
 
     def becomes career
-      ensure_target_validity! career
-      career_changes.create! to: career
+      switch_career to: career
     end
 
     def career_available? career
