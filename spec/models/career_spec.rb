@@ -21,4 +21,19 @@ RSpec.describe Career, type: :model do
     expect(icon).not_to be_basic
     expect(diva).not_to be_advanced
   end
+
+  it 'lists its abilities' do
+    expect(diva.skills).to
+      contain_exactly dancing, sassy_snap
+  end
+
+  it 'lists its talents' do
+    expect(diva.skills).to
+      contain_exactly fabulous
+  end
+
+  it 'lists its skills' do
+    expect(diva.skills).to
+      contain_exactly dancing, sassy_snap, fabulous
+  end
 end
