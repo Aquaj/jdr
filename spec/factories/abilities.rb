@@ -17,7 +17,8 @@ FactoryGirl.define do
     end
 
     factory :secret_ability do
-      name 'Secret'
+      name   'Secret'
+      secret true
     end
   end
 end
