@@ -1,9 +1,10 @@
+require File.join Rails.root, 'app', 'models', 'career', 'exceptions'
+
 module Managers
   class CareerManager < Manager
     needs_from_owner :career_changes
     needs_from_owner :careers_acquired
     needs_from_owner :previous_careers
-    needs_from_owner :knowledges_of_classes
     needs_from_owner :secret_classes
 
     def careers
