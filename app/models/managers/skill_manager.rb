@@ -23,7 +23,7 @@ module Managers
     protected
 
     def known? skill
-      return secret_abilities.include? skill if (Ability === skill) && skill.secret?
+      return secret_abilities.include? skill if skill.secret?
       true
     end
 
@@ -32,12 +32,12 @@ module Managers
     end
 
     def skill_unknown skill
-      return TalentUnknownException if Talent === skill
+      return TalentUnknownException if skill.is_a? Talent
       AbilityUnknownException
     end
 
     def skill_unavailable skill
-      return TalentUnavailableException if Talent === skill
+      return TalentUnavailableException if skill.is_a? Talent
       AbilityUnavailableException
     end
   end
