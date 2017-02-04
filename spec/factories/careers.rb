@@ -8,7 +8,7 @@ FactoryGirl.define do
 
         after :create do |bull|
           link_talent  :strong_af, to: bull
-          link_ability :punching, to: bull
+          link_ability :punching,  to: bull
 
           stat_bonus 20, :strength, bull
         end
@@ -18,8 +18,9 @@ FactoryGirl.define do
         name 'Diva'
 
         after :create do |diva|
-          link_talent  :gay, to: diva
-          link_ability :dancing, to: diva
+          link_talent  :gay,        to: diva
+          link_talent  :fabulous,   to: diva
+          link_ability :dancing,    to: diva
           link_ability :sassy_snap, to: diva
 
           stat_bonus 15, :agility, diva
@@ -55,7 +56,7 @@ FactoryGirl.define do
         name 'Death Itself'
 
         after :create do |death|
-          link_talent  :lethal, to: death
+          link_talent  :lethal,        to: death
           link_ability :snap_of_death, to: death
         end
       end
@@ -67,7 +68,6 @@ FactoryGirl.define do
         after :create do |secret|
           link_career :diva, to: secret
 
-          link_talent  :secret_talent, to: secret
           link_ability :secret_ability, to: secret
         end
       end

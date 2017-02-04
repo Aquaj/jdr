@@ -15,9 +15,5 @@ FactoryGirl.define do
     factory :lethal do
       name 'Lethal'
     end
-
-    factory :secret_talent do
-      name 'Secret'
-    end
   end
 end
