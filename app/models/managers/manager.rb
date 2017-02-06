@@ -2,6 +2,8 @@ module Managers
   class Manager
     attr_reader :owner
 
+    delegate :managed_attribute, to: :class
+
     def initialize owner
       @owner = owner
     end
@@ -20,6 +22,10 @@ module Managers
         delegate attribute, to: :owner
         private attribute # Avoids endless loop of delegation.
       end
+    end
+
+    def self.contract
+      @needs
     end
 
     def self.enforce_contract_with! object
